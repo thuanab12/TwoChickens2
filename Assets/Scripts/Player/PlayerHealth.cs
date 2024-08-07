@@ -45,9 +45,30 @@ public class PlayerHealth : Singleton<PlayerHealth>
         if (enemy)
         {
             TakeDamage(1, other.transform);
-        }
-    }
 
+        }
+       
+    }
+    public void TakeDamage(int amount)
+    {
+        currentHealth -= amount;
+        if (currentHealth < 0)
+        {
+            currentHealth = 0;
+        }
+
+        if (healthSlider != null)
+        {
+            healthSlider.value = currentHealth;
+        }
+
+        if (currentHealth <= 0)
+        {
+            CheckIfPlayerDeath();
+        }
+        AudioManager.instance.PlaySFX("Thurst");
+
+    }
     public void HealPlayer()
     {
         if (currentHealth < maxHealth)
@@ -69,6 +90,8 @@ public class PlayerHealth : Singleton<PlayerHealth>
         StartCoroutine(DamageRecoveryRoutine());
         UpdateHealthSlider();
         CheckIfPlayerDeath();
+        AudioManager.instance.PlaySFX("Thurst");
+
     }
 
     private void CheckIfPlayerDeath()
@@ -94,6 +117,7 @@ public class PlayerHealth : Singleton<PlayerHealth>
     {
         yield return new WaitForSeconds(damageRecoveryTime);
         canTakeDamage = true;
+
     }
 
     private void UpdateHealthSlider()

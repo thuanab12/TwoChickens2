@@ -21,7 +21,7 @@ public class Knockback : MonoBehaviour
         Vector2 difference = (transform.position - damageSource.position).normalized * knockBackThrust * rb.mass;
         rb.AddForce(difference, ForceMode2D.Impulse);
         StartCoroutine(KnockRoutine());
-        AudioManager.instance.PlaySFX("Enemy");
+       // AudioManager.instance.PlaySFX("Enemy");
 
     }
 

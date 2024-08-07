@@ -43,6 +43,8 @@ public class Projectile : MonoBehaviour
             } else if (!other.isTrigger && indestructible) {
                 Instantiate(particleOnHitPrefabVFX, transform.position, transform.rotation);
                 Destroy(gameObject);
+                AudioManager.instance.PlaySFX("Bullet");
+
             }
         }
     }

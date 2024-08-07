@@ -107,7 +107,7 @@ public class Pickup : MonoBehaviour
                 break;
             case PickUpType.AK47:
                 ActiveInventory.Instance.SetAK47Collected(true); // Unlock slot 3 when AK47 is picked up
-                AudioManager.instance.PlaySFX("Coin");
+                AudioManager.instance.PlaySFX("Health");
 
                 break;
         }

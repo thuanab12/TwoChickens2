@@ -33,6 +33,7 @@ public class Shooter : MonoBehaviour, IEnemy
     public void Attack() {
         if (!isShooting) {
             StartCoroutine(ShootRoutine());
+            AudioManager.instance.PlaySFX("Bullet");
 
         }
     }
