@@ -92,15 +92,23 @@ public class Pickup : MonoBehaviour
             case PickUpType.GoldCoin:
                 EconomyManager.Instance.UpdateCurrentGold();
                 ActiveInventory.Instance.AddCoins(1); // Add coin to the active inventory
+                AudioManager.instance.PlaySFX("Coin");
+
                 break;
             case PickUpType.HealthGlobe:
                 PlayerHealth.Instance.HealPlayer();
+                AudioManager.instance.PlaySFX("Health");
+
                 break;
             case PickUpType.StaminaGlobe:
                 Stamina.Instance.RefreshStamina();
+                AudioManager.instance.PlaySFX("Stamina");
+
                 break;
             case PickUpType.AK47:
                 ActiveInventory.Instance.SetAK47Collected(true); // Unlock slot 3 when AK47 is picked up
+                AudioManager.instance.PlaySFX("Coin");
+
                 break;
         }
     }

@@ -104,62 +104,23 @@ public class UI_Seting : MonoBehaviour
         GameIsPaused = false;
     }
 
-
-    // Thêm biến Slider và AudioSource hoặc AudioMixer
-    public Slider volumeSlider;
-    public AudioSource audioSource; // Sử dụng nếu bạn không dùng AudioMixer
-
-    void Start()
+    public Slider _musiscSlider, _sfxSlider;
+    
+    public void ToggleMusic()
     {
-        // Đảm bảo rằng slider đã được gán và thêm sự kiện vào slider
-        if (volumeSlider != null)
-        {
-            volumeSlider.onValueChanged.AddListener(SetVolume);
-            volumeSlider.value = PlayerPrefs.GetFloat("volume", 0.75f); // Lấy giá trị lưu trữ trước đó nếu có
-        }
-
-        // Đăng ký sự kiện khi scene được load
-        SceneManager.sceneLoaded += OnSceneLoaded;
+        AudioManager.instance.ToggleMusic();
+    } 
+    public void ToggleSFX()
+    {
+        AudioManager.instance.ToggleSFX();
+    }
+    public void MusicVolume()
+    {
+        AudioManager.instance.MusicVolume(_musiscSlider.value);
+    }
+    public void SFXVolume()
+    {
+        AudioManager.instance.SFXVolume(_sfxSlider.value);
     }
 
-    void OnDestroy()
-    {
-        // Hủy đăng ký sự kiện khi đối tượng bị hủy
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
-
-    // Phương thức được gọi khi scene được load
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-       
-        // Kiểm tra và phát âm thanh
-        PlaySceneAudio(scene.name);
-    }
-
-    // Phương thức phát âm thanh tương ứng với scene
-    void PlaySceneAudio(string sceneName)
-    {
-        // Ví dụ: phát âm thanh khi scene "Game" được load
-        if (sceneName == "Game")
-        {
-            // Phát âm thanh từ audioSource
-            if (audioSource != null && audioSource.clip != null)
-            {
-                audioSource.Play();
-            }
-        }
-    }
-
-    public void SetVolume(float volume)
-    {
-        PlayerPrefs.SetFloat("volume", volume); // Lưu giá trị âm lượng
-        PlayerPrefs.Save();
-
-        if (audioSource != null)
-        {
-            audioSource.volume = volume;
-        }
-
-
-    }
 }

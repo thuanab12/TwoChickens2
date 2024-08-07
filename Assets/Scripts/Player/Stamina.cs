@@ -29,6 +29,8 @@ public class Stamina : Singleton<Stamina>
     public void UseStamina() {
         CurrentStamina--;
         UpdateStaminaImages();
+        AudioManager.instance.PlaySFX("Flash");
+
     }
 
     public void RefreshStamina() {

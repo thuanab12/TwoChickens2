@@ -99,6 +99,7 @@ public class PlayerController : Singleton<PlayerController>
             moveSpeed *= dashSpeed;
             myTrailRenderer.emitting = true;
             StartCoroutine(EndDashRoutine());
+
         }
     }
 

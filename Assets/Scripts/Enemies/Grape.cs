@@ -24,6 +24,7 @@ public class Grape : MonoBehaviour, IEnemy
         } else {
             spriteRenderer.flipX = true;
         }
+        AudioManager.instance.PlaySFX("Bullet");
     }
 
     public void SpawnProjectileAnimEvent() {

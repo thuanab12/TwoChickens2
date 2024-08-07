@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
 public class Singleton<T> : MonoBehaviour where T : Singleton<T>
 {
     private static T instance;
@@ -28,11 +27,12 @@ public class Singleton<T> : MonoBehaviour where T : Singleton<T>
             DontDestroyOnLoad(gameObject);
         }
 
-        // Destroy the instance if we are in Scene 1
-        if (SceneManager.GetActiveScene().buildIndex ==  1) // Assuming Scene 1 has build index 1
+        // Destroy the instance if we are in Scene 0 or Scene 1
+        int sceneIndex = SceneManager.GetActiveScene().buildIndex;
+        if (sceneIndex == 0 || sceneIndex == 1)
         {
             Destroy(gameObject);
-           instance = null; // Reset the instance to null
+            instance = null; // Reset the instance to null
         }
     }
 }

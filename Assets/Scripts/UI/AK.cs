@@ -39,6 +39,8 @@ public class AK : MonoBehaviour, IWeapon
             newArrow.GetComponent<Projectile>().UpdateProjectileRange(weaponInfo.weaponRange);
             currentBullets--;
             UpdateBulletText();
+            AudioManager.instance.PlaySFX("AK47");
+
         }
         else
         {

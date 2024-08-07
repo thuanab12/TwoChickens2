@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.ParticleSystem;
 
 public class Knockback : MonoBehaviour
 {
@@ -14,11 +15,14 @@ public class Knockback : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    public void GetKnockedBack(Transform damageSource, float knockBackThrust) {
+    public void GetKnockedBack(Transform damageSource, float knockBackThrust)
+    {
         GettingKnockedBack = true;
         Vector2 difference = (transform.position - damageSource.position).normalized * knockBackThrust * rb.mass;
-        rb.AddForce(difference, ForceMode2D.Impulse); 
+        rb.AddForce(difference, ForceMode2D.Impulse);
         StartCoroutine(KnockRoutine());
+        AudioManager.instance.PlaySFX("Enemy");
+
     }
 
     private IEnumerator KnockRoutine() {

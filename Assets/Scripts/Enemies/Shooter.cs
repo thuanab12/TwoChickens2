@@ -33,6 +33,7 @@ public class Shooter : MonoBehaviour, IEnemy
     public void Attack() {
         if (!isShooting) {
             StartCoroutine(ShootRoutine());
+
         }
     }
 
@@ -88,6 +89,7 @@ public class Shooter : MonoBehaviour, IEnemy
 
         yield return new WaitForSeconds(restTime);
         isShooting = false;
+
     }
 
     private void TargetConeOfInfluence(out float startAngle, out float currentAngle, out float angleStep, out float endAngle)
