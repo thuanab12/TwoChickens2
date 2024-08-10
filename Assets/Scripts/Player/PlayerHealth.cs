@@ -41,10 +41,12 @@ public class PlayerHealth : Singleton<PlayerHealth>
     private void OnCollisionStay2D(Collision2D other)
     {
         EnemyAI enemy = other.gameObject.GetComponent<EnemyAI>();
+        Dame_than_bos boss = other.gameObject.GetComponent<Dame_than_bos>();
 
-        if (enemy)
+        if (enemy || boss)
         {
             TakeDamage(1, other.transform);
+            Debug.Log("ccc");
 
         }
        

@@ -26,6 +26,7 @@ public class AK : MonoBehaviour, IWeapon
 
     private void Start()
     {
+
         UpdateBulletText();
         StartCoroutine(RefillBullets());
     }
@@ -62,13 +63,26 @@ public class AK : MonoBehaviour, IWeapon
 
         if (mousePos.x < playerScreenPoint.x)
         {
-            ActiveWeapon.Instance.transform.rotation = Quaternion.Euler(0, -180, 0);
+            // Rotate left and set y scale to positive
+            ActiveWeapon.Instance.transform.rotation = Quaternion.Euler(0, 0, 0);
+            ActiveWeapon.Instance.transform.localScale = new Vector3(
+                ActiveWeapon.Instance.transform.localScale.x,
+                Mathf.Abs(ActiveWeapon.Instance.transform.localScale.x), // Ensure y scale is positive
+                ActiveWeapon.Instance.transform.localScale.z
+            );
         }
         else
         {
-            ActiveWeapon.Instance.transform.rotation = Quaternion.Euler(0, 0, 0);
+            // Rotate right and set y scale to negative
+            ActiveWeapon.Instance.transform.rotation = Quaternion.Euler(0, -180, 0);
+            ActiveWeapon.Instance.transform.localScale = new Vector3(
+                ActiveWeapon.Instance.transform.localScale.x,
+                -Mathf.Abs(ActiveWeapon.Instance.transform.localScale.x), // Ensure y scale is negative
+                ActiveWeapon.Instance.transform.localScale.z
+            );
         }
     }
+
 
     private void UpdateBulletText()
     {

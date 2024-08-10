@@ -1866,6 +1866,7 @@ GameObject:
   - component: {fileID: 694303130}
   - component: {fileID: 694303132}
   - component: {fileID: 694303134}
+  - component: {fileID: 694303135}
   m_Layer: 0
   m_Name: Bosss
   m_TagString: Untagged
@@ -2109,6 +2110,23 @@ MonoBehaviour:
   speed: 3
   chaseDistance: 10
   aniAttack: 2
+--- !u!114 &694303135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 694303119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed391ccc7f1c14646838cde5d128d7f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roamChangeDirFloat: 2
+  attackRange: 0
+  enemyType: {fileID: 0}
+  attackCooldown: 2
+  stopMovingWhileAttacking: 0
 --- !u!4 &708254088 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8991131525258752113, guid: ecd78b68589552440ac98a61e55dbd7d, type: 3}
