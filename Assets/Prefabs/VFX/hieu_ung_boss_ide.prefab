@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7437475889089452150}
   - component: {fileID: 8963218256029438119}
   m_Layer: 0
-  m_Name: Projectile VFX
+  m_Name: hieu_ung_boss_ide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -2.0572777, y: -1.294923, z: 0.07054635}
-  m_LocalScale: {x: 1.6788, y: 1.6788, z: 1.6788}
+  m_LocalScale: {x: 5.5396, y: 5.5396, z: 5.5396}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -224,7 +224,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 1}
+      maxColor: {r: 1, g: 0.09365728, b: 0, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -288,7 +288,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.08
+      scalar: 0.7
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -981,7 +981,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 15
+        scalar: 8
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -4836,7 +4836,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c09b346f1f01864488222f5a9120b410, type: 2}
+  - {fileID: 2100000, guid: ab85a801eecc41949a3098dafc1e7df8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
