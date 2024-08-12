@@ -1,7 +1,9 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System;
+
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
@@ -11,6 +13,15 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
+        int sceneIndex = SceneManager.GetActiveScene().buildIndex;
+
+        // Kiểm tra nếu là Scene 0 hoặc Scene 1 thì xóa AudioManager
+        if (sceneIndex == 0 )
+        {
+            Destroy(gameObject);
+            return; // Thoát khỏi phương thức Awake nếu đã xóa đối tượng
+        }
+
         if (instance == null)
         {
             instance = this;
@@ -21,11 +32,13 @@ public class AudioManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
     private void Start()
     {
-        PlayMusic("Theme"); 
+        PlayMusic("Theme");
     }
-    public void PlayMusic (string name)
+
+    public void PlayMusic(string name)
     {
         Sound s = Array.Find(musicSounds, x => x.name == name);
         if (s == null)
@@ -38,6 +51,7 @@ public class AudioManager : MonoBehaviour
             musicSource.Play();
         }
     }
+
     public void PlaySFX(string name)
     {
         Sound s = Array.Find(sfxSounds, x => x.name == name);
@@ -45,28 +59,30 @@ public class AudioManager : MonoBehaviour
         if (s == null)
         {
             Debug.Log("Sound Not Found");
-
         }
         else
         {
             sfxSourece.PlayOneShot(s.clip);
         }
     }
+
     public void ToggleMusic()
     {
-         musicSource.mute = !musicSource.mute;
+        musicSource.mute = !musicSource.mute;
     }
+
     public void ToggleSFX()
     {
         sfxSourece.mute = !sfxSourece.mute;
     }
+
     public void MusicVolume(float volume)
     {
         musicSource.volume = volume;
     }
+
     public void SFXVolume(float volume)
     {
-
         sfxSourece.volume = volume;
     }
 }

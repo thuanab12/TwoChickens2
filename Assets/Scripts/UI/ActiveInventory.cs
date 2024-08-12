@@ -1,18 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ActiveInventory : Singleton<ActiveInventory>
 {
     private int activeSlotIndexNum = 0;
-    private int playerCoins = 0; // Track player's coin count
-    private bool isAK47Collected = false; // Flag to check if AK47 is collected
+    private int playerCoins = 0;
+    private bool isAK47Collected = false;
     private PlayerControls playerControls;
 
     protected override void Awake()
     {
         base.Awake();
         playerControls = new PlayerControls();
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void Start()
@@ -25,6 +25,35 @@ public class ActiveInventory : Singleton<ActiveInventory>
         playerControls.Enable();
     }
 
+    private void OnDisable()
+    {
+        if (playerControls != null)
+        {
+            playerControls.Disable();
+        }
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        int sceneIndex = scene.buildIndex;
+
+        if (sceneIndex == 0 || sceneIndex == 1)
+        {
+            if (playerControls != null)
+            {
+                playerControls.Disable();
+            }
+        }
+        else
+        {
+            if (playerControls != null)
+            {
+                playerControls.Enable();
+            }
+        }
+    }
+
     public void EquipStartingWeapon()
     {
         ToggleActiveHighlight(0);
@@ -34,7 +63,6 @@ public class ActiveInventory : Singleton<ActiveInventory>
     {
         int slotIndex = numValue - 1;
 
-        // Check if the player has enough coins to access the slot
         if ((slotIndex == 1 && playerCoins < 10) ||
             (slotIndex == 2 && playerCoins < 50))
         {
@@ -42,13 +70,12 @@ public class ActiveInventory : Singleton<ActiveInventory>
             return;
         }
 
-        // Check if slot 3 should be unlocked
         if (slotIndex == 3 && !isAK47Collected)
         {
             Debug.Log("Slot 3 is locked until you collect the AK47!");
             return;
         }
-        
+
         ToggleActiveHighlight(slotIndex);
     }
 
@@ -60,7 +87,7 @@ public class ActiveInventory : Singleton<ActiveInventory>
         {
             inventorySlot.GetChild(0).gameObject.SetActive(false);
         }
-        if(indexNum == 4)
+        if (indexNum == 4)
         {
             return;
         }
@@ -92,14 +119,12 @@ public class ActiveInventory : Singleton<ActiveInventory>
         ActiveWeapon.Instance.NewWeapon(newWeapon.GetComponent<MonoBehaviour>());
     }
 
-    // Method to add coins
     public void AddCoins(int amount)
     {
         playerCoins += amount;
         Debug.Log("Coins: " + playerCoins);
     }
 
-    // Method to set AK47 collected
     public void SetAK47Collected(bool collected)
     {
         isAK47Collected = collected;

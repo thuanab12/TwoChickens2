@@ -35,4 +35,24 @@ public class Singleton<T> : MonoBehaviour where T : Singleton<T>
             instance = null; // Reset the instance to null
         }
     }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        int sceneIndex = scene.buildIndex;
+        if (sceneIndex == 0 || sceneIndex == 1)
+        {
+            Destroy(gameObject);
+            instance = null; // Reset the instance to null
+        }
+    }
 }
