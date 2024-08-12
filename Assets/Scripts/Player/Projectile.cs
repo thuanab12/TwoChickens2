@@ -45,6 +45,8 @@ public class Projectile : MonoBehaviour
                 player?.TakeDamage(1, transform);
                 Instantiate(particleOnHitPrefabVFX, transform.position, transform.rotation);
                 Destroy(gameObject);
+               // AudioManager.instance.PlaySFX("boss");
+
             }
             else if (!other.isTrigger && indestructible)
             {
@@ -53,7 +55,10 @@ public class Projectile : MonoBehaviour
                 AudioManager.instance.PlaySFX("Bullet");
 
             }
+
+
         }
+
     }
 
     private void DetectFireDistance()

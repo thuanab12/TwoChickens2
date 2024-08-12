@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Audio;
+using TMPro;
 
 public class UI_Seting : MonoBehaviour
 {
@@ -122,6 +123,18 @@ public class UI_Seting : MonoBehaviour
     public void SFXVolume()
     {
         AudioManager.instance.SFXVolume(_sfxSlider.value);
+    }
+
+    private int playerCoins = 0;
+    public TextMeshProUGUI coinText; // Reference to the TextMeshProUGUI component
+
+    public void AddCoins(int amount)
+    {
+        playerCoins += amount;
+        Debug.Log("Coins: " + playerCoins);
+
+        // Update the TextMeshProUGUI text to show the current coin count
+        coinText.text = "Coins: " + playerCoins;
     }
 
 }

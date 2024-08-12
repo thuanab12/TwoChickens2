@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1394008578475350447}
   - component: {fileID: -8533024143819571154}
   - component: {fileID: -5734384219821743266}
+  - component: {fileID: 4196963702015322526}
   m_Layer: 0
   m_Name: Lightning_1_512-sheet_0
   m_TagString: Untagged
@@ -202,3 +203,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.26
+--- !u!114 &4196963702015322526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8623043439308550141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21cfea4c3e358da459bd2d373574c1d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 0.51
+  particleOnHitPrefabVFX: {fileID: 2948048360338672110, guid: 91271c323c5cf1146a48a21f77e1ab51, type: 3}
+  isEnemyProjectile: 1
+  projectileRange: 13.8
