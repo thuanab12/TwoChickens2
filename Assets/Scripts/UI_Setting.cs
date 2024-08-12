@@ -91,11 +91,12 @@ public class UI_Seting : MonoBehaviour
         SceneManager.LoadScene(2);
        
     }
-
     public void BG()
     {
+       
         SceneManager.LoadScene(1);
     }
+
 
     public void Restart()
     {

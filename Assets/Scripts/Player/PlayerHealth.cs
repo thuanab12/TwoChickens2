@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerHealth : Singleton<PlayerHealth>
 {
+    public static PlayerHealth istance;
     public bool isDead { get; private set; }
 
     [SerializeField] private int maxHealth = 3;
@@ -36,6 +37,7 @@ public class PlayerHealth : Singleton<PlayerHealth>
         currentHealth = maxHealth;
 
         UpdateHealthSlider();
+        if (istance == null) istance = this;
     }
 
     private void OnCollisionStay2D(Collision2D other)
@@ -49,7 +51,7 @@ public class PlayerHealth : Singleton<PlayerHealth>
             Debug.Log("ccc");
 
         }
-       
+
     }
     public void TakeDamage(int amount)
     {
@@ -94,6 +96,7 @@ public class PlayerHealth : Singleton<PlayerHealth>
         CheckIfPlayerDeath();
         AudioManager.instance.PlaySFX("Thurst");
 
+
     }
 
     private void CheckIfPlayerDeath()
@@ -132,4 +135,5 @@ public class PlayerHealth : Singleton<PlayerHealth>
         healthSlider.maxValue = maxHealth;
         healthSlider.value = currentHealth;
     }
+
 }

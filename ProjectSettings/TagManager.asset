@@ -6,6 +6,7 @@ TagManager:
   tags:
   - AK47
   - Trap
+  - DontDestroyTag
   layers:
   - Default
   - TransparentFX
