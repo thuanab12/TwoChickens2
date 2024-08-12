@@ -6,9 +6,7 @@ public class Panel_win : MonoBehaviour
 {
     public GameObject panel; // Tham chiếu tới panel UI
     private bool hasTriggered = false; // Biến để kiểm tra xem panel đã hiện chưa
-    public static bool gameipause = false;
-
-
+    public static bool gameIsPaused = false; // Đổi tên biến cho dễ hiểu hơn
 
     private void Start()
     {
@@ -17,19 +15,22 @@ public class Panel_win : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Player" && !hasTriggered)
+        if (other.CompareTag("Player") && !hasTriggered)
         {
-            panel.SetActive(true); // Hiển thị panel
-            hasTriggered = true; // Đặt biến thành true để không hiện panel lần nữa
-            Time.timeScale = 0;
-            gameipause = true;
-
+            ShowWinPanel();
         }
-
     }
- 
+
+    private void ShowWinPanel()
+    {
+        panel.SetActive(true); // Hiển thị panel
+        hasTriggered = true; // Đặt biến thành true để không hiện panel lần nữa
+        PauseGame(); // Dừng game
+    }
+
+    private void PauseGame()
+    {
+        Time.timeScale = 0; // Dừng game lại
+        gameIsPaused = true;
+    }
 }
-
-
-
-
